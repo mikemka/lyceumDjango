@@ -4,12 +4,15 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">{{ item.name }}</h5>
-                
                 <p class="card-text">{{ item.text|truncatewords:10 }}</p>
 
                 <p><span class="badge bg-warning text-dark">
                     {{ item.tags.all|join:'</span> <span class="badge bg-warning text-dark">' }}
                 </span></p>
+
+                {% if item.upload %}
+                  <p><img class="img-fluid" src="{{ item.get_image_250x250.url }}"></p>
+                {% endif %}
 
                 <a href="{% url 'item_detail' pk=item.id %}" class="btn btn-dark">Подробнее</a>
             </div>
